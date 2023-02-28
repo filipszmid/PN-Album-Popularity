@@ -1,6 +1,7 @@
 import os
 
-from sklearn.metrics import euclidean_distances, r2_score, mean_squared_error
+from sklearn.metrics import mean_squared_error
+
 
 def replace_genre(x):
     if not x or x == "none":
@@ -22,6 +23,6 @@ def summary(model, x_train, y_train, x_test, y_test):
 
 
 def fix_paths():
-  abspath = os.path.abspath(__file__)
-  dname = os.path.dirname(abspath)
-  os.chdir(dname)
+    abspath = os.path.abspath(__file__)
+    dname = os.path.dirname(abspath)
+    os.chdir(dname)

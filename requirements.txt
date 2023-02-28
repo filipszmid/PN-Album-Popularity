@@ -14,3 +14,4 @@ pytest
 pytest-bdd
 pytest-codecov
 pytest-cov
+python-dotenv
