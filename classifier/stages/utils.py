@@ -5,9 +5,9 @@
 import os
 
 import numpy as np
-from sklearn.metrics import mean_squared_error
+from constants import PATH_TO_BUCKET
 from loguru import logger
-from classifier.stages.constants import PATH_TO_BUCKET
+from sklearn.metrics import mean_squared_error
 
 
 def replace_genre(x):

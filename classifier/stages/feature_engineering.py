@@ -6,10 +6,9 @@ import os
 
 import numpy as np
 import pandas as pd
+from constants import PATH_TO_BUCKET
 from dotenv import load_dotenv
 from sklearn.model_selection import train_test_split
-
-from constants import PATH_TO_BUCKET
 from utils import fix_paths
 
 load_dotenv()

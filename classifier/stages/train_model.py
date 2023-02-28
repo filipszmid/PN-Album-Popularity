@@ -5,7 +5,6 @@
 import pickle
 
 from sklearn.linear_model import LinearRegression
-
 from utils import fix_paths, get_current_model_patch, load_data
 
 fix_paths()

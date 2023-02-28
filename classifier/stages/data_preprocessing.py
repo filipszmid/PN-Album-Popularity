@@ -3,10 +3,10 @@
 """Data preprocessing"""
 
 from pathlib import Path
-import pandas as pd
 
-from utils import replace_genre, fix_paths
+import pandas as pd
 from constants import PATH_TO_BUCKET
+from utils import fix_paths, replace_genre
 
 fix_paths()
 data_path = Path("../data/pitchfork.csv")

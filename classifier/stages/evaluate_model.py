@@ -4,10 +4,11 @@
 import os
 import pickle
 
-from classifier.stages.constants import PATH_TO_SCORES
-from utils import fix_paths, summary, get_current_model_patch, load_data, get_version
-from loguru import logger
 from dotenv import load_dotenv
+from loguru import logger
+from utils import fix_paths, get_current_model_patch, get_version, load_data, summary
+
+from classifier.stages.constants import PATH_TO_SCORES
 
 fix_paths()
 load_dotenv()
