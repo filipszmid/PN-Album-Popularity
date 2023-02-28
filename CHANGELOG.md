@@ -1,7 +1,8 @@
-## Unreleased (2023-02-28)
+## 0.2.0 (2023-02-28)
 
 ### Feat
 
+- new version
 - model evaluation
 - model versioning
 - adjustments

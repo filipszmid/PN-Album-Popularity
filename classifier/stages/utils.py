@@ -41,7 +41,7 @@ def get_version() -> str:
 
 
 def get_current_model_patch() -> str:
-    return "../data/models/finalized_model-v" + get_version() + ".sav"
+    return "../data/models/model-v" + get_version() + ".sav"
 
 
 def load_data() -> tuple:

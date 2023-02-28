@@ -18,6 +18,6 @@ loaded_model = pickle.load(open(filename, "rb"))
 r2 = summary(loaded_model, x_train, y_train, x_test, y_test)
 logger.info("Model version " + get_version() + f" have R^2= {r2} ")
 
-f = open(PATH_TO_SCORES + "model-v" + get_version() + ".txt", "w")
+f = open(PATH_TO_SCORES + "score-v" + get_version() + ".txt", "w")
 f.write("{}".format(r2))
 f.close()
