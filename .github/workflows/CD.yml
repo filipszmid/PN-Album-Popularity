@@ -22,7 +22,7 @@ jobs:
       - name: install packages
         run: make install
       - name: preprocess data
-        run: python classifier/stages/1_data_preprocessing.py
+        run: . .venv/bin/activate && python classifier/stages/1_data_preprocessing.py
       - name: commit all changes
         run: make all
 
@@ -39,7 +39,7 @@ jobs:
       - name: install packages
         run: make install
       - name: feature engineering
-        run: python classifier/stages/2_feature_engineering.py
+        run: . .venv/bin/activate && python classifier/stages/2_feature_engineering.py
       - name: commit all changes
         run: make all
 
@@ -56,7 +56,7 @@ jobs:
       - name: install packages
         run: make install
       - name: train model
-        run: python classifier/stages/3_train_model.py
+        run: . .venv/bin/activate && python classifier/stages/3_train_model.py
       - name: commit all changes
         run: make all
 
