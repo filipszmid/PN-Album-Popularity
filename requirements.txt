@@ -1,0 +1,12 @@
+scikit-learn
+scipy
+pandas
+matplotlib
+pathlib
+statistics
+seaborn
+numpy
+statsmodels
+black
+sphinx
+prospector[with_everything]
