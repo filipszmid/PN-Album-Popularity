@@ -58,7 +58,7 @@ Complete CI-CD process will be visible in GitHub Actions [page](https://github.c
 
 ***
 
-## How to create a new version of model?
+## New version of model creation
 Pipeline will always use a model with version specified in **VERSION** file.  
 In case of making changes to a model update the recent version:
 * `make bump` - will bump the version file of a model based on last commit created with commitizen  
