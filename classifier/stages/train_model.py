@@ -19,9 +19,8 @@ y_test = np.loadtxt(PATH_TO_BUCKET+"y_test.csv", delimiter=",")
 
 reg = LinearRegression().fit(x_train, y_train)
 
-r2 = summary(reg, x_train, y_train, x_test, y_test)
-print(r2)
 
-filename = "../data/bucket/finalized_model.sav"
+
+filename = "../data/finalized_model.sav"
 pickle.dump(reg, open(filename, "wb"))
 
