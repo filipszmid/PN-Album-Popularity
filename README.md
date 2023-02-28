@@ -33,6 +33,27 @@ test                (ALLURE=True BROWSE=True) run tests
 venv                install virtual environment
 
 ```
+## CI/CD Pipeline
+## Continuous Integration and delivery
+Complete CI-CD process will be visible in GitHub Actions [page](https://github.com/Filip-231/PN-ML-Challenge/actions) containing:
+* **CI** - run on every push to master and on pull requests:
+  * **Test**  - run unit tests.
+  * **Format** - check if code is formatted.
+  * **Lint** - run all static code checkers with prospector.
+* **CD** - continuous package delivery:
+  * **Preprocessing data** - load data from origin and perform basic operations.
+  * **Feature engineering** - create features and split dataset.
+  * **Train model** - train model with parameters from **.env** and save **classifier/models/** directory.
+  * **Evaluate model** - score model and save output to **classifier/scores** directory.
+* **CI/CD** - manual trigger, includes CI and CD pipelines connected.
+
+<center>
+<div style="width: 100%; height: 40%">
+
+![Pipeline](.github/Pipeline.png)
+
+</div>
+</center>
 
 ## How to create a new version of model?
 Pipeline will always use a model with version specified in **VERSION** file.  
