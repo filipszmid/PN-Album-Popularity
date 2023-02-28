@@ -1,0 +1,49 @@
+name: CI
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  _PROJECT: ${{ github.event.repository.name }}
+  _USER: ${{ github.actor }}
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: install packages
+        env:
+          EXTRAS: test
+        run: make install
+      - name: Test
+        run: make test
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: install packages
+      env:
+        EXTRAS: lint
+      run: make install
+    - name: Lint
+      run: make lint
+
+  format:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: install packages
+        env:
+          EXTRAS: format
+        run: make install
+      - name: Format
+        run: make format

@@ -10,3 +10,7 @@ statsmodels
 black
 sphinx
 prospector[with_everything]
+pytest
+pytest-bdd
+pytest-codecov
+pytest-cov
