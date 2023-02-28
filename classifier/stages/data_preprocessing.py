@@ -7,6 +7,7 @@ import pandas as pd
 
 from utils import replace_genre, fix_paths
 from constants import PATH_TO_BUCKET
+
 fix_paths()
 data_path = Path("../data/pitchfork.csv")
 org_df = pd.read_csv(data_path, dtype={"releaseyear": int})
@@ -20,4 +21,4 @@ df = org_df.drop_duplicates(subset=["album", "reviewauthor"], keep="first").rese
     drop=True
 )
 
-df.to_csv(PATH_TO_BUCKET+"preprocessed-pitchfork.csv", index=True)
+df.to_csv(PATH_TO_BUCKET + "preprocessed-pitchfork.csv", index=True)

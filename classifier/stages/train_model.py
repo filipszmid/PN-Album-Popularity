@@ -4,23 +4,15 @@
 
 import pickle
 
-import numpy as np
 from sklearn.linear_model import LinearRegression
 
-from constants import PATH_TO_BUCKET
-from utils import fix_paths, summary
+from utils import fix_paths, get_current_model_patch, load_data
 
 fix_paths()
 
-x_train = np.loadtxt(PATH_TO_BUCKET+"x_train.csv", delimiter=",")
-x_test = np.loadtxt(PATH_TO_BUCKET+"x_test.csv", delimiter=",")
-y_train = np.loadtxt(PATH_TO_BUCKET+"y_train.csv", delimiter=",")
-y_test = np.loadtxt(PATH_TO_BUCKET+"y_test.csv", delimiter=",")
+x_train, x_test, y_train, y_test = load_data()
 
 reg = LinearRegression().fit(x_train, y_train)
 
-
-
-filename = "../data/finalized_model.sav"
+filename = get_current_model_patch()
 pickle.dump(reg, open(filename, "wb"))
-

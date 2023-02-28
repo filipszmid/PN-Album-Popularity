@@ -4,7 +4,10 @@
 
 import os
 
+import numpy as np
 from sklearn.metrics import mean_squared_error
+
+from classifier.stages.constants import PATH_TO_BUCKET
 
 
 def replace_genre(x):
@@ -30,3 +33,20 @@ def fix_paths():
     abspath = os.path.abspath(__file__)
     dname = os.path.dirname(abspath)
     os.chdir(dname)
+
+
+def get_version() -> str:
+    f = open("../../VERSION", "r")
+    return f.read()
+
+
+def get_current_model_patch() -> str:
+    return "../data/models/finalized_model-v" + get_version() + ".sav"
+
+
+def load_data() -> tuple:
+    x_train = np.loadtxt(PATH_TO_BUCKET + "x_train.csv", delimiter=",")
+    x_test = np.loadtxt(PATH_TO_BUCKET + "x_test.csv", delimiter=",")
+    y_train = np.loadtxt(PATH_TO_BUCKET + "y_train.csv", delimiter=",")
+    y_test = np.loadtxt(PATH_TO_BUCKET + "y_test.csv", delimiter=",")
+    return x_train, x_test, y_train, y_test

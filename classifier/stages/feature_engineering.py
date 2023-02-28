@@ -49,7 +49,7 @@ x_train, x_test, y_train, y_test = train_test_split(
 print(x_train)
 print(type(x_train))
 
-np.savetxt(PATH_TO_BUCKET+"x_train.csv", x_train, delimiter=",")
-np.savetxt(PATH_TO_BUCKET+"x_test.csv", x_test, delimiter=",")
-np.savetxt(PATH_TO_BUCKET+"y_train.csv", y_train, delimiter=",")
-np.savetxt(PATH_TO_BUCKET+"y_test.csv", y_test, delimiter=",")
+np.savetxt(PATH_TO_BUCKET + "x_train.csv", x_train, delimiter=",")
+np.savetxt(PATH_TO_BUCKET + "x_test.csv", x_test, delimiter=",")
+np.savetxt(PATH_TO_BUCKET + "y_train.csv", y_train, delimiter=",")
+np.savetxt(PATH_TO_BUCKET + "y_test.csv", y_test, delimiter=",")
