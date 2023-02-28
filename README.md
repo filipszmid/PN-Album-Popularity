@@ -8,6 +8,7 @@ The model parameters used in pipeline can be adjusted by changing **.env** file.
 
 In case model will exceed max allowed R^2 script: *classifier/stages/evaluate_model.py* will log a warning.
 
+***
 ## Features
 After installing virtual environment `make install`  
 activate: `. .venv/bin/activate` and `make help` to see help message.
@@ -33,7 +34,7 @@ test                (ALLURE=True BROWSE=True) run tests
 venv                install virtual environment
 
 ```
-## CI/CD Pipeline
+***
 ## Continuous Integration and delivery
 Complete CI-CD process will be visible in GitHub Actions [page](https://github.com/Filip-231/PN-ML-Challenge/actions) containing:
 * **CI** - run on every push to master and on pull requests:
@@ -54,6 +55,8 @@ Complete CI-CD process will be visible in GitHub Actions [page](https://github.c
 
 </div>
 </center>
+
+***
 
 ## How to create a new version of model?
 Pipeline will always use a model with version specified in **VERSION** file.  
