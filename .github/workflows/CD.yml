@@ -58,6 +58,7 @@ jobs:
     name: Bump Version
     environment:
       name: Production
+      token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     runs-on: ubuntu-latest
 #    needs: [ model_training ]
     steps:
@@ -69,8 +70,6 @@ jobs:
       - name: bump version
         run: make bump
       - name: commit all changes
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: make all
 
   publish_release:
