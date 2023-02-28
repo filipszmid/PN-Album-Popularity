@@ -1,12 +1,38 @@
 # PN-ML-Challenge
 The model parameters used in pipeline can be adjusted by changing **.env** file.
 
-| **Variable**    | **Description**                 | **Example Value** |
-|-----------------|---------------------------------|-------------------|
-| TEST_SIZE       | How big the test size should be | 0.3               |
+| **Variable** | **Description**                 | **Example Value** |
+|--------------|---------------------------------|-------------------|
+| TEST_SIZE    | How big the test size should be | 0.3               |
+| MAX_R2       | Max allowed R^2                 | 0.03              |
 
-## Interactive commits
-`make commit`
+In case model will exceed max allowed R^2 script: *classifier/stages/evaluate_model.py* will log a warning.
+
+## Features
+After installing virtual environment `make install`  
+activate: `. .venv/bin/activate` and `make help` to see help message.
+```
+Please use make target where target is one of:
+all                 commit and push all changes
+brew-allure         install allure with brew long
+bump                (PART= ) bump the release version - deduced automatically from commit messages unless PART is provided
+changelog           (UNRELEASED= current version) update the changelog incrementally.
+check-commit        check the commit message is valid
+clean               clean up temp and trash files
+commit              make interactive conventional commit
+docs                render documentation
+format              format code
+get-version         output the current version
+help                display this help message
+install             install the requirements
+lint                run static code checkers
+pre-install         install pre-requirements
+release             create a new github release
+tag                 pull tags and tag a new version
+test                (ALLURE=True BROWSE=True) run tests
+venv                install virtual environment
+
+```
 
 ## How to create a new version of model?
 Pipeline will always use a model with version specified in **VERSION** file.  
