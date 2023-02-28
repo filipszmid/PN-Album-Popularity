@@ -23,7 +23,7 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.3, rando
 print(x_train)
 print(type(x_train))
 
-np.savetxt('../data/x_train.csv', x_train, delimiter=",")
-np.savetxt('../data/x_test.csv', x_test, delimiter=",")
-np.savetxt('../data/y_train.csv', x_train, delimiter=",")
-np.savetxt('../data/y_test.csv', x_test, delimiter=",")
+np.savetxt('../data/bucket/x_train.csv', x_train, delimiter=",")
+np.savetxt('../data/bucket/x_test.csv', x_test, delimiter=",")
+np.savetxt('../data/bucket/y_train.csv', y_train, delimiter=",")
+np.savetxt('../data/bucket/y_test.csv', y_test, delimiter=",")
