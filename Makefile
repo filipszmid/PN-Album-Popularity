@@ -4,6 +4,7 @@ SHELL := /bin/bash
 -include .env
 -include Makefile.configure
 -include Makefile.specific
+-include .github/workflows/Makefile.cicd
 
 BRANCH ?= master
 DOMAIN ?= github.com
