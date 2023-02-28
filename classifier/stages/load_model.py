@@ -1,5 +1,10 @@
-import numpy as np
+#  type: ignore
+# pylint: disable-all
+"""Loading model"""
 import pickle
+
+import numpy as np
+
 from constants import PATH_TO_BUCKET
 
 filename = PATH_TO_BUCKET+"finalized_model.sav"
