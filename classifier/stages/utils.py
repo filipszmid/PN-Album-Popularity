@@ -1,3 +1,7 @@
+#  type: ignore
+# pylint: disable-all
+"""Utilities"""
+
 import os
 
 from sklearn.metrics import mean_squared_error

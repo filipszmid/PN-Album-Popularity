@@ -1,7 +1,11 @@
-import pandas as pd
-from pathlib import Path
-from utils import replace_genre, fix_paths
+#  type: ignore
+# pylint: disable-all
+"""Data preprocessing"""
 
+from pathlib import Path
+import pandas as pd
+
+from utils import replace_genre, fix_paths
 
 fix_paths()
 data_path = Path("../data/pitchfork.csv")

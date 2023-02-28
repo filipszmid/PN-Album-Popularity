@@ -1,3 +1,7 @@
+#  type: ignore
+# pylint: disable-all
+"""Model training"""
+
 import pickle
 
 import numpy as np
