@@ -6,7 +6,7 @@ The model parameters used in pipeline can be adjusted by changing **.env** file.
 | TEST_SIZE    | How big the test size should be | 0.3               |
 | MAX_R2       | Max allowed R^2                 | 0.03              |
 
-In case model will exceed max allowed R^2 script: *classifier/stages/evaluate_model.py* will log a warning.
+In case model will exceed max allowed **R^2** then script: *classifier/stages/evaluate_model.py* will log a warning.
 
 ***
 ## Features
