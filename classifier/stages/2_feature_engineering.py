@@ -1,7 +1,10 @@
+import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-import numpy as np
 
+from utils import fix_paths
+
+fix_paths()
 df = pd.read_csv("../data/bucket/preprocessed-pitchfork.csv", index_col=[0])
 
 hot_encoded = pd.get_dummies(df.genre)

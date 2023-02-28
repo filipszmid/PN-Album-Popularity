@@ -1,3 +1,5 @@
+import os
+
 from sklearn.metrics import euclidean_distances, r2_score, mean_squared_error
 
 def replace_genre(x):
@@ -17,3 +19,9 @@ def summary(model, x_train, y_train, x_test, y_test):
     print("Mean squared error: %.2f" % mean_squared_error(y_test, y_pred))
 
     return r2
+
+
+def fix_paths():
+  abspath = os.path.abspath(__file__)
+  dname = os.path.dirname(abspath)
+  os.chdir(dname)

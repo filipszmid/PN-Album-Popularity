@@ -12,7 +12,13 @@ from pathlib import Path
 # linear fit using statsmodels
 
 # sklearn
-from classifier.stages.utils import replace_genre
+
+
+from utils import replace_genre, fix_paths
+
+
+fix_paths()
+
 
 data_path = Path("../data/pitchfork.csv")
 org_df = pd.read_csv(data_path, dtype={"releaseyear": int})
