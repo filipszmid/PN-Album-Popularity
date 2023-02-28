@@ -1,0 +1,121 @@
+name: CD
+on:
+  workflow_call:
+  workflow_dispatch:
+
+
+env:
+  GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  publish_test_package:
+    name: Publish Test Package
+    environment:
+      name: Testing
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=bp-test-package-dev
+            type=sha
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  bump_version:
+    name: Bump Version
+    environment:
+      name: Production
+    runs-on: ubuntu-latest
+    needs: [ publish_test_package ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: authorise git
+        run: make authorise USER=${{ github.actor }} EMAIL="${{ github.actor }}@users.noreply.github.com"
+      - name: install packages
+        run: make install
+      - name: bump version
+        run: make bump
+      - name: commit all changes
+        run: make all
+
+  publish_release:
+    name: Publish Release
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.set_version.outputs.VERSION }}
+    needs: [ bump_version ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: install packages
+        run: make install
+      - name: authorise git
+        run: make authorise USER=${{ github.actor }} EMAIL="${{ github.actor }}@users.noreply.github.com"
+      - name: tag new version
+        run: make tag
+      - name: update changelog
+        id: set_version
+        run: |
+          make changelog UNRELEASED=`cat VERSION`
+          echo "VERSION=`cat VERSION`" >> $GITHUB_OUTPUT
+      - name: commit all changes
+        run: make all
+      - name: publish release
+        run: make release
+
+  publish_package:
+    name: Publish Package
+    needs: [publish_release]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Log in to the Container registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=pep440,pattern={{raw}},value=${{ needs.publish_release.outputs.version }}
+            type=ref,event=branch
+            type=sha
+      - name: Build and push Docker image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
