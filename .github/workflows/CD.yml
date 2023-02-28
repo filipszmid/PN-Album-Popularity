@@ -15,7 +15,6 @@ jobs:
     environment:
       name: Production
     runs-on: ubuntu-latest
-    allow-failure: true
     steps:
       - uses: actions/checkout@v3
       - name: authorise git
@@ -24,15 +23,12 @@ jobs:
         run: make install
       - name: preprocess data
         run: . .venv/bin/activate && python classifier/stages/1_data_preprocessing.py
-      - name: commit all changes
-        run: make all
 
   feature_engineering:
     name: Feature engineering
     environment:
       name: Production
     runs-on: ubuntu-latest
-    allow-failure: true
     needs: [ data_preprocessing ]
     steps:
       - uses: actions/checkout@v3
@@ -42,15 +38,12 @@ jobs:
         run: make install
       - name: feature engineering
         run: . .venv/bin/activate && python classifier/stages/2_feature_engineering.py
-      - name: commit all changes
-        run: make all
 
   model_training:
     name: Train model
     environment:
       name: Production
     runs-on: ubuntu-latest
-    allow-failure: true
     needs: [ feature_engineering ]
     steps:
       - uses: actions/checkout@v3
@@ -60,8 +53,6 @@ jobs:
         run: make install
       - name: train model
         run: . .venv/bin/activate && python classifier/stages/3_train_model.py
-      - name: commit all changes
-        run: make all
 
   bump_version:
     name: Bump Version
