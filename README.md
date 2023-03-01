@@ -34,6 +34,15 @@ test                (ALLURE=True BROWSE=True) run tests
 venv                install virtual environment
 
 ```
+Interactive commits cooperating with pre-hook and changelog updates:
+<center>
+<div style="width: 100%; height: 40%">
+
+![Pipeline](.github/Commit.png)
+
+</div>
+</center>
+
 ***
 ## Continuous Integration and delivery
 Complete CI-CD process will be visible in GitHub Actions [page](https://github.com/Filip-231/PN-ML-Challenge/actions) containing:
