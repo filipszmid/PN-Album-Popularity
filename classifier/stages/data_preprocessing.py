@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 from constants import PATH_TO_BUCKET
-from utils import fix_paths, replace_genre
+from utils import fix_paths, filter_none
 
 
 class DataPreprocessingWorkflow:
@@ -16,7 +16,7 @@ class DataPreprocessingWorkflow:
         self.df_initial = pd.read_csv(self.data_path, dtype={"releaseyear": int})
 
     def replace_unknown_genres(self) -> None:
-        self.df_initial["genre"] = self.df_initial["genre"].apply(replace_genre)
+        self.df_initial["genre"] = self.df_initial["genre"].apply(filter_none)
 
     def remove_duplicate_reviews(self) -> pd.DataFrame:
         df = self.df_initial.drop_duplicates(

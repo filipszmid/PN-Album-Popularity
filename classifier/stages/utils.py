@@ -10,7 +10,8 @@ from loguru import logger
 from sklearn.metrics import mean_squared_error
 
 
-def replace_genre(x):
+def filter_none(x):
+    """Return 'Other' in case x equal to 'none'"""
     if not x or x == "none":
         return "Other"
     return x
