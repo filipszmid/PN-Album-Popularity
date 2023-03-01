@@ -23,12 +23,12 @@ class EvaluateModelWorkflow:
         return loaded_model
 
     def evaluate_model(self, model):
-        r2 = summary(model, self.x_train, self.y_train, self.x_test, self.y_test)
-        if r2 > self.MAX_R2:
+        score = summary(model, self.x_train, self.y_train, self.x_test, self.y_test)
+        if score > self.MAX_R2:
             logger.warning(
                 "Model version " + get_version() + f" have greater R^2 than {0.3} "
             )
-        return r2
+        return score
 
     @staticmethod
     def export_score(score):
