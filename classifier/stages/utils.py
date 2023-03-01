@@ -30,21 +30,25 @@ def summary(model, x_train, y_train, x_test, y_test):
 
 
 def fix_paths():
+    """Fix paths"""
     abspath = os.path.abspath(__file__)
     dname = os.path.dirname(abspath)
     os.chdir(dname)
 
 
 def get_version() -> str:
+    """Return version of a model"""
     f = open("../../VERSION", "r")
     return f.read()
 
 
 def get_current_model_patch() -> str:
+    """Return model path"""
     return "../data/models/model-v" + get_version() + ".sav"
 
 
 def load_data() -> tuple:
+    """Load x and y data"""
     x_train = np.loadtxt(PATH_TO_BUCKET + "x_train.csv", delimiter=",")
     x_test = np.loadtxt(PATH_TO_BUCKET + "x_test.csv", delimiter=",")
     y_train = np.loadtxt(PATH_TO_BUCKET + "y_train.csv", delimiter=",")
