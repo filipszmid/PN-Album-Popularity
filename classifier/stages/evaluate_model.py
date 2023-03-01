@@ -9,21 +9,36 @@ from dotenv import load_dotenv
 from loguru import logger
 from utils import fix_paths, get_current_model_patch, get_version, load_data, summary
 
-fix_paths()
-load_dotenv()
-MAX_R2 = float(os.environ["MAX_R2"])
+
+class EvaluateModelWorkflow:
+    def __init__(self):
+        fix_paths()
+        load_dotenv()
+        self.MAX_R2 = float(os.environ["MAX_R2"])
+        self.x_train, self.x_test, self.y_train, self.y_test = load_data()
+        self.filename = get_current_model_patch()
+
+    def load_model_from_disk(self):
+        loaded_model = pickle.load(open(self.filename, "rb"))
+        return loaded_model
+
+    def evaluate_model(self, model):
+        r2 = summary(model, self.x_train, self.y_train, self.x_test, self.y_test)
+        if r2 > self.MAX_R2:
+            logger.warning(
+                "Model version " + get_version() + f" have greater R^2 than {0.3} "
+            )
+        return r2
+
+    @staticmethod
+    def export_score(score):
+        f = open(PATH_TO_SCORES + "score-v" + get_version() + ".txt", "w")
+        f.write("{}".format(score))
+        f.close()
 
 
-x_train, x_test, y_train, y_test = load_data()
-
-# load the model from disk
-filename = get_current_model_patch()
-loaded_model = pickle.load(open(filename, "rb"))
-
-r2 = summary(loaded_model, x_train, y_train, x_test, y_test)
-if r2 > MAX_R2:
-    logger.warning("Model version " + get_version() + f" have greater R^2 than {0.3} ")
-
-f = open(PATH_TO_SCORES + "score-v" + get_version() + ".txt", "w")
-f.write("{}".format(r2))
-f.close()
+if __name__ == "__main__":
+    workflow = EvaluateModelWorkflow()
+    model = workflow.load_model_from_disk()
+    r2 = workflow.evaluate_model(model)
+    workflow.export_score(r2)
