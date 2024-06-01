@@ -22,7 +22,7 @@ jobs:
       - name: install packages
         run: make install
       - name: preprocess data
-        run: . .venv/bin/activate && python classifier/stages/data_preprocessing.py
+        run: . .venv/bin/activate && python popularity_forecaster/jobs/data_preprocessing.py
 
   feature_engineering:
     name: Feature engineering
@@ -37,7 +37,7 @@ jobs:
       - name: install packages
         run: make install
       - name: feature engineering
-        run: . .venv/bin/activate && python classifier/stages/feature_engineering.py
+        run: . .venv/bin/activate && python popularity_forecaster/jobs/feature_engineering.py
 
   model_training:
     name: Train model
@@ -52,7 +52,7 @@ jobs:
       - name: install packages
         run: make install
       - name: train model
-        run: . .venv/bin/activate && python classifier/stages/train_model.py
+        run: . .venv/bin/activate && python popularity_forecaster/jobs/train_model.py
 
   model_evaluation:
     name: Evaluate model
@@ -67,7 +67,7 @@ jobs:
       - name: install packages
         run: make install
       - name: evaluate model
-        run: . .venv/bin/activate && python classifier/stages/evaluate_model.py
+        run: . .venv/bin/activate && python popularity_forecaster/jobs/evaluate_model.py
 
 #  bump_version:
 #    name: Bump Version

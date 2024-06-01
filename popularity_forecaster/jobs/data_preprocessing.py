@@ -5,14 +5,14 @@
 from pathlib import Path
 
 import pandas as pd
-from constants import PATH_TO_BUCKET
-from utils import fix_paths, filter_none
+from popularity_forecaster.core.constants import PATH_TO_BUCKET
+from popularity_forecaster.core.utils import fix_paths, filter_none
 
 
 class DataPreprocessingWorkflow:
     def __init__(self):
         fix_paths()
-        self.data_path = Path("../data/pitchfork.csv")
+        self.data_path = Path("../../data/pitchfork.csv")
         self.df_initial = pd.read_csv(self.data_path, dtype={"releaseyear": int})
 
     def replace_unknown_genres(self) -> None:
