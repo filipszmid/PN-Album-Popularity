@@ -4,10 +4,10 @@
 import os
 import pickle
 
-from constants import PATH_TO_SCORES
+from popularity_forecaster.core.constants import PATH_TO_SCORES
 from dotenv import load_dotenv
 from loguru import logger
-from utils import fix_paths, get_current_model_patch, get_version, load_data, summary
+from popularity_forecaster.core.utils import fix_paths, get_current_model_patch, get_version, load_data, summary
 
 
 class EvaluateModelWorkflow:

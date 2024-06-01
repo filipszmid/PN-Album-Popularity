@@ -6,10 +6,10 @@ import os
 
 import numpy as np
 import pandas as pd
-from constants import PATH_TO_BUCKET
+from popularity_forecaster.core.constants import PATH_TO_BUCKET
 from dotenv import load_dotenv
 from sklearn.model_selection import train_test_split
-from utils import fix_paths
+from popularity_forecaster.core.utils import fix_paths
 
 
 class FeatureEngineeringWorkflow:
@@ -18,7 +18,7 @@ class FeatureEngineeringWorkflow:
         fix_paths()
         self.test_size = float(os.environ["TEST_SIZE"])
         self.df = pd.read_csv(
-            "../data/bucket/preprocessed-pitchfork.csv", index_col=[0]
+            "../../data/bucket/preprocessed-pitchfork.csv", index_col=[0]
         )
 
     def generate_hot_encoded(self):
