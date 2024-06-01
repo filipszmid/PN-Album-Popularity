@@ -5,7 +5,7 @@
 import os
 
 import numpy as np
-from constants import PATH_TO_BUCKET
+from popularity_forecaster.core.constants import PATH_TO_BUCKET
 from loguru import logger
 from sklearn.metrics import mean_squared_error
 
@@ -44,7 +44,7 @@ def get_version() -> str:
 
 def get_current_model_patch() -> str:
     """Return model path"""
-    return "../data/models/model-v" + get_version() + ".sav"
+    return "../../data/models/model-v" + get_version() + ".sav"
 
 
 def load_data() -> tuple:
